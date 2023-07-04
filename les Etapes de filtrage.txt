@@ -1,0 +1,8 @@
+To filter the recommendations, the following steps are typically involved:
+Identify the target user for whom recommendations are being generated.
+Retrieve the corresponding row from the user matrix U that represents the preferences of the target user.
+Compute the similarity between the target user and other users based on their rows in U. This similarity can be measured using various techniques, such as cosine similarity or Euclidean distance.
+Select the most similar users or a predefined number of nearest neighbors based on the computed similarity.
+Filter out items that have already been consumed or rated by the target user to avoid recommending items they have already seen.
+Aggregate the ratings or preferences of the similar users for the remaining items.
+Rank the items based on the aggregated preferences and present the top-ranked items as recommendations to the target user.
