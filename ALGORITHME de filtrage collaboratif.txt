@@ -1,0 +1,262 @@
+filtrage collaboratif
+décembre 23, 2021  Aucun commentaire
+Le filtrage collaboratif est le processus prédictif derrière les moteurs de recommandation. Les moteurs de recommandation analysent les informations sur les utilisateurs ayant des goûts similaires pour évaluer la probabilité qu’un individu cible apprécie quelque chose, comme une vidéo, un livre ou un produit. Le filtrage collaboratif est également connu sous le nom de filtrage social.
+
+Le filtrage collaboratif utilise des algorithmes pour filtrer les données des avis des utilisateurs afin de faire des recommandations personnalisées pour les utilisateurs ayant des préférences similaires. Le filtrage collaboratif est également utilisé pour sélectionner le contenu et la publicité pour les individus sur les médias sociaux.
+
+Trois types de filtrage collaboratif couramment utilisés dans les systèmes de recommandation sont basés sur le voisinage, l’élément à élément et la classification.
+
+Dans le filtrage basé sur le voisinage, les utilisateurs sont sélectionnés pour leur similarité avec l’utilisateur actif. Cette similarité est déterminée en faisant correspondre les utilisateurs qui ont posté des avis similaires. Sur la base de la similarité précédente, on présume que les goûts et les dégoûts futurs seront également similaires. A partir de l’évaluation moyenne du groupe, des recommandations sont faites pour l’utilisateur actif.
+
+Un processus de filtrage item-to-item utilise une matrice pour déterminer la similitude de paires d’articles. Les processus item-to-item comparent ensuite la préférence de l’utilisateur actuel aux éléments de la matrice pour trouver des similarités sur lesquelles baser les recommandations.
+
+Un système de filtrage collaboratif basé sur la classification recommande des choses en fonction de la similarité des utilisateurs qui ont aimé cette classification ou ce genre. On suppose que les utilisateurs qui apprécient ou n’apprécient pas des expériences similaires dans une classification en apprécieront également d’autres dans cette classification.
+
+Certains systèmes de filtrage collaboratif sont basés sur la mémoire, comme les modèles de voisinage et d’élément à élément, qui comparent les similarités des utilisateurs ou des éléments. D’autres sont basés sur des modèles, utilisant l’apprentissage automatique pour comparer des éléments dissemblables. Les systèmes basés sur des modèles peuvent utiliser des algorithmes tels que le processus de décision de Markov pour prédire les évaluations d’éléments qui n’ont pas encore été évalués. Les systèmes hybrides comprennent des caractéristiques du filtrage basé sur la mémoire et du filtrage basé sur un modèle.
+
+Les systèmes de recommandation sont utilisés pour fournir des suggestions pour toutes sortes de sites Web et de services. Pourtant, ils peuvent rencontrer un certain nombre de difficultés. La sparsité des évaluations est l’un des principaux obstacles à l’utilité du filtrage collaboratif dans les systèmes comportant de nombreux éléments. Les nouveaux éléments ont également tendance à être difficiles à recommander. Dans les nouveaux systèmes de recommandation, il est difficile de fournir de bonnes recommandations avant qu’un nombre suffisant d’utilisateurs aient saisi des évaluations. Dans le même temps, cependant, un trop grand nombre d’évaluations d’utilisateurs peut être un défi pour certains systèmes, car ils constituent d’énormes ensembles de données.
+
+je vais vous expliquer l'algorithme de filtrage collaboratif de manière simple, comme si vous aviez 10 ans. Commençons par les bases.
+
+Imaginez que vous aimez regarder des films et que vous avez un ami qui a des goûts similaires aux vôtres. Vous vous rendez compte que chaque fois que votre ami vous recommande un film, vous l'aimez aussi. Maintenant, si votre ami vous dit qu'il aime un nouveau film, vous pouvez prédire que vous aimerez probablement ce film aussi, car vous partagez des goûts similaires.
+
+L'algorithme de filtrage collaboratif fonctionne sur le même principe. C'est une méthode utilisée par les sites de recommandation comme Netflix ou Amazon pour vous suggérer des films, des livres ou d'autres produits en fonction de vos préférences.
+
+Voici comment cela fonctionne :
+
+Collecte des données : Le site de recommandation collecte des informations sur les préférences de nombreuses personnes. Par exemple, il enregistre les films qu'elles ont regardés et les évaluations qu'elles leur ont données.
+
+Trouver des personnes similaires : L'algorithme recherche des personnes ayant des goûts similaires aux vôtres en analysant les données collectées. Il compare vos évaluations avec celles d'autres utilisateurs pour trouver des personnes qui ont des goûts similaires aux vôtres.
+
+Faire des prédictions : Une fois que des personnes similaires sont identifiées, l'algorithme utilise les évaluations de ces personnes pour prédire comment vous évalueriez un film que vous n'avez pas encore vu. Par exemple, si la plupart des personnes similaires ont donné une évaluation élevée à un film en particulier, l'algorithme peut prédire que vous aimeriez aussi ce film.
+
+Recommandations : Enfin, l'algorithme vous recommande des films ou d'autres produits en fonction de ces prédictions. Il classe les éléments recommandés en fonction de la probabilité que vous les appréciiez.
+
+En résumé, l'algorithme de filtrage collaboratif collecte des données sur les goûts des utilisateurs, trouve des personnes ayant des goûts similaires aux vôtres, utilise leurs évaluations pour prédire vos préférences, puis vous recommande des éléments en fonction de ces prédictions.
+
+
+Bien sûr ! Voici l'algorithme de filtrage collaboratif sous sa forme mathématique, avec une explication de chaque fonction :
+
+Supposons que nous ayons N utilisateurs et M produits. La matrice des évaluations des utilisateurs pour les produits est généralement représentée par une matrice R de taille N x M.
+
+Calcul de similarité :
+La fonction de similarité calcule la similarité entre deux utilisateurs (ou items). On utilise souvent la similarité cosinus ou la similarité de Pearson. Cela mesure à quel point deux utilisateurs ont des goûts similaires.
+
+La fonction de similarité prend en entrée les évaluations des utilisateurs pour les produits et renvoie une matrice de similarité S de taille N x N (ou une matrice de similarité d'items de taille M x M).
+
+Sélection des voisins :
+La fonction de sélection des voisins identifie les utilisateurs (ou items) les plus similaires à un utilisateur donné. On fixe généralement un seuil de similarité pour déterminer quels utilisateurs sont considérés comme des voisins.
+
+La fonction de sélection des voisins prend en entrée la matrice de similarité S et renvoie une liste de voisins pour chaque utilisateur.
+
+Prédiction de notation :
+La fonction de prédiction de notation utilise les évaluations des voisins pour prédire la notation qu'un utilisateur donnerait à un produit qu'il n'a pas encore évalué.
+
+On peut utiliser différentes méthodes pour calculer la prédiction de notation, telles que la moyenne pondérée des évaluations des voisins ou des techniques plus avancées comme la factorisation de matrices.
+
+Recommandations :
+La fonction de recommandation utilise les prédictions de notation pour générer une liste de recommandations pour un utilisateur donné.
+
+On peut classer les produits recommandés en fonction des prédictions de notation, en sélectionnant les meilleurs produits pour l'utilisateur.
+
+Ces différentes fonctions constituent les étapes clés de l'algorithme de filtrage collaboratif. Elles permettent de calculer la similarité entre les utilisateurs, de trouver des voisins similaires, de prédire les notations et de générer des recommandations personnalisées.
+
+Bien sûr ! La factorisation de matrices est une technique couramment utilisée dans les algorithmes de filtrage collaboratif. La formule générale de la factorisation de matrices est la suivante :
+
+R ≈ P x Q^T
+
+où :
+
+R est la matrice des évaluations des utilisateurs pour les produits de taille N x M.
+P est une matrice de taille N x K, où chaque ligne représente un utilisateur et chaque colonne représente un facteur latent (une caractéristique cachée). K est le nombre de facteurs latents choisi.
+Q est une matrice de taille M x K, où chaque ligne représente un produit et chaque colonne représente un facteur latent.
+Q^T représente la transposée de la matrice Q.
+L'objectif de la factorisation de matrices est d'apprendre les matrices P et Q de sorte que leur multiplication approxime au mieux la matrice R. Cela signifie que la multiplication P x Q^T doit donner des valeurs qui sont proches des évaluations réelles des utilisateurs.
+
+Pour trouver les matrices P et Q, on utilise généralement des techniques d'optimisation telles que la descente de gradient stochastique (SGD) ou des méthodes de factorisation matricielle plus avancées comme Alternating Least Squares (ALS).
+
+En optimisant les matrices P et Q, on peut obtenir une meilleure approximation de la matrice R et utiliser cette approximation pour prédire les évaluations manquantes ou générer des recommandations pour les utilisateurs.
+Le filtrage collaboratif  est un algorithme de recommandation, c’est-à-dire un algorithme qui consiste à prédire les articles (quels qu’ils soient, des livres, des films, des articles de presse, etc.) que des utilisateurs apprécieront dans le futur. Le filtrage collaboratif repose sur l’exploitation de « la sagesse de la foule » (traduction de l’expression anglaise consacrée : « wisdom of the crowd »).  L’idée est que pour prédire ce qu’une personne va aimer dans le futur, et qu’il est donc pertinent de lui recommander, l’algorithme n’utilise pas uniquement l’historique de cet utilisateur, mais toutes les informations existantes dans le système concernant les autres utilisateurs.  Pour faire simple, ces algorithmes permettent de détecter les utilisateurs qui ont des goûts similaires pour exploiter ces informations à des fins de recommandations. Par exemple s’il s’avère qu’Alice, Bob et Martin ont aimé par le passé des livres similaires et qu’Alice achète, ou donne un avis favorable sur le dernier livre de Paul Auster (celui du reste qui vient de recevoir le Prix du Livre étranger 2018 France Inter/Le Journal du Dimanche), il est très probable que Bob et Martin l’aiment aussi et il est pertinent de le leur recommander.
+
+ 
+
+
+
+ 
+
+De quoi a-t-on besoin pour mettre en place un algorithme de filtrage collaboratif, simplement de profils utilisateurs, c’est-à-dire de l’historique de l’avis des utilisateurs sur des articles. Cet avis peut prendre la forme d’une « vue » ou d’un partage (d’une page web par exemple), d’un achat (d’un livre par exemple), d’une note (sur un film dans une plate-forme de films), etc.
+
+Il existe de nombreuses approches de filtrage collaboratif.  Concentrons-nous sur une approche qui est intuitive à comprendre : le filtrage collaboratif par « recherche de plus proche voisin ». En deux mots, cette approche consiste à mesurer la similarité entre les profils utilisateurs en utilisant votre mesure préférée (Pearson, Jacquart, cosine, etc), typiquement plus deux utilisateurs ont vu/acheté/noté de la même façon, plus ils seront proches selon cette mesure. Je vous épargne les subtilités de ces mesures, mais cela pourra faire l’objet d’un prochain article si vous insistez.  Ensuite pour chaque utilisateur, il suffit de dénicher (c’est-à-dire de choisir une méthode de scoring) dans les profils des utilisateurs les plus proches, les articles qu’il va aimer avec une forte probabilité.
+
+Notez que ces techniques de recommandation sont très différentes de celles qui reposent sur l’exploration du contenu des articles. Vous pouvez en apprendre plus sur les déférences dans notre livre blanc.
+
+Quoi qu’il en soit, le filtrage collaboratif a de nombreux atouts et pour de nombreuses applications.
+
+ 
+
+5-avantages-filtrage-collaboratif-1200px-628px
+
+ 
+
+Atout numéro 1 : la performance de la personnalisation
+Tout d’abord, le filtrage collaboratif permet de faire des prédictions précises en utilisant non seulement l’historique d’un utilisateur, mais celles de tous les utilisateurs d’un système. En profitant de toute cette information, il est alors possible de capturer des informations « cachées » sur les utilisateurs. Par exemple, le fait que Bob et Martin ont une forte probabilité d’aimer le dernier livre de Paul Auster est une information qui n’est pas présente dans leurs profils.
+
+ 
+
+Atout numéro 2 : le « multi-linguisme »
+Un des atouts majeurs du filtrage collaboratif est le fait qu’il peut s’appliquer à un très large éventail de contextes : des langues différentes, des applications différentes (des livres, des annonces immobilières, des articles de journaux, des films, des vêtements, etc.) Tout simplement, car on ne s’intéresse pas au contenu des profils, le filtrage collaboratif exploite « seulement » les similarités entre profils : dès qu’il est possible d’identifier que Alice, Bob et Martin se ressemblent, il n’est pas nécessaire de savoir en quoi ils sont similaires, mais uniquement de profiter de connaître ces informations. En conséquence, cette méthode est assez universelle.
+
+ 
+
+Atout numéro 3 : la flexibilité
+On peut tout faire et s’adapter à tous les secteurs avec le filtrage collaboratif. On peut modifier à l’envi les mesures de similarités, la prise en compte des avis, le contenu à recommander et l’information à exploiter, etc., et s’adapter ainsi au e-commerce, au média en ligne, etc.
+
+ 
+
+ 
+
+Atout numéro 4 : le passage à l’échelle
+Compte tenu du volume colossal de contenus qui ne cesse d’augmenter et du nombre massif et croissant d’utilisateurs en ligne, les capacités de passage à l’échelle d’un algorithme sont cruciales. Passer à l’échelle veut dire être capable de rester performant à mesure que le système grandit. Le filtrage collaboratif est une méthode idéale pour réduire la dimension du problème et continuer de fournir des résultats pertinents en temps réel, même en présence de millions d’utilisateurs.
+
+ 
+
+Atout numéro 5 : le dynamisme
+Enfin, la prise en compte du dynamisme est une propriété cruciale en particulier dans les secteurs « dynamiques » eux-mêmes comme les médias en ligne.  Avec une méthode de filtrage collaboratif, il est aisé de prendre en compte les changements d’intérêts des utilisateurs au cours du temps. Imaginons un site d’articles de sports et qu’Alice s’intéresse uniquement au hand-ball durant l’année,  clairement les utilisateurs similaires à Alice seront également intéressés par le hand-ball. Imaginons maintenant qu’à la faveur des Jeux olympiques, elle s’intéresse aussi au kayak et au volley-ball, l’algorithme lui identifiera naturellement des profils différents et le tout reviendra à la normale automatiquement et sans aucune interaction d’Alice, à l’issue des JO.
+
+ 
+
+Pour conclure le filtrage collaboratif est une approche simple à appréhender et qui permet de concevoir des outils de personnalisation pertinents, performants et capables de s’adapter à un très grand nombre de secteurs. N’hésitez plus, adoptez-le en visitant mediego.com.
+
+Similarité cosinus
+
+Article
+Discussion
+Lire
+Modifier
+Modifier le code
+Voir l’historique
+
+Outils
+Page d’aide sur l’homonymie	
+Pour les articles homonymes, voir Similarité et Cosinus.
+
+La similarité cosinus donne la similarité de deux vecteurs à n dimensions en déterminant le cosinus de leur angle. Ce score est fréquemment utilisée en fouille de textes1.
+
+Soit deux vecteurs A et B, le cosinus de leur angle θ s'obtient en prenant leur produit scalaire divisé par le produit de leurs normes :
+
+cos
+⁡
+ 
+=
+ 
+⋅
+ 
+‖
+ 
+‖
+‖
+ 
+‖{\displaystyle \cos \theta ={\frac {\mathbf {A} \cdot \mathbf {B} }{\|\mathbf {A} \|\|\mathbf {B} \|}}}.
+La valeur d'un cosinus, donc celle calculée ici pour cos θ, est comprise dans l'intervalle [-1,1]. La valeur de -1 indique des vecteurs opposés, la valeur de 0 des vecteurs indépendants (orthogonaux) et la valeur de 1 des vecteurs colinéaires de coefficient positif. Les valeurs intermédiaires permettent d'évaluer le degré de similarité.
+
+Dans le cas d'une comparaison de documents textuels
+La similarité cosinus est fréquemment utilisée en tant que mesure de ressemblance entre deux documents. Il pourra s'agir de comparer les textes issus d'un corpus dans une optique de classification (regrouper tous les documents relatifs à une thématique particulière), ou de recherche d'information (dans ce cas, un document vectorisé est constitué par les mots de la requête et est comparé par mesure de cosinus de l'angle avec des vecteurs correspondant à tous les documents présents dans le corpus. On évalue ainsi lesquels sont les plus proches)2.
+
+La mesure d'angle entre deux vecteurs ne pouvant être réalisée qu'avec des valeurs numériques, il faut imaginer un moyen de convertir les mots d'un document en nombres. On partira d'un index correspondant aux mots présents dans les documents puis on attribuera à ces mots des valeurs. La forme la plus simple pourrait être de compter le nombre d'occurrences des mots dans les documents.
+
+En règle générale, pour mesurer finement la similarité entre des séquences de texte, les vecteurs sont construits d'après un calcul de type TF-IDF (term frequency–inverse document frequency) qui permet d'estimer l'importance d'un mot par rapport au document qui le contient, en tenant compte du poids de ce mot dans le corpus complet.
+
+Indice de Tanimoto
+L'indice de Tanimoto reprend cette idée dans le cas des attributs binaires3. Il se définit comme suit :
+
+ 
+(
+ 
+,
+ 
+)
+=
+ 
+⋅
+ 
+‖
+ 
+‖
+2
++
+‖
+ 
+‖
+2
+−
+ 
+⋅
+ 
+ T(A,B) = \frac{A \cdot B}{\|A\|^2 +\|B\|^2 - A \cdot B}.
+Voir aussi
+Indice et distance de Jaccard
+
+
+ Je vais vous montrer les différentes étapes de construction de l'algorithme de filtrage collaboratif avec la factorisation matricielle (ALS) à partir de zéro, et je vous donnerai un exemple chiffré pour illustrer chaque étape. Commençons :
+
+Chargement des données :
+Supposons que nous ayons une matrice d'évaluations des utilisateurs-produits R de taille N x M, où N est le nombre d'utilisateurs et M est le nombre de produits. Chaque élément R[i, j] représente l'évaluation de l'utilisateur i pour le produit j.
+
+Initialisation des matrices de facteurs latents :
+Nous initialisons les matrices de facteurs latents P et Q de manière aléatoire. P est de taille N x K et Q est de taille M x K, où K est le nombre de facteurs latents choisi.
+
+Entraînement de l'algorithme ALS :
+Nous effectuons des itérations pour entraîner les matrices P et Q en alternant entre la mise à jour des facteurs utilisateur et la mise à jour des facteurs produit.
+
+Mise à jour des facteurs utilisateur (P) :
+Pour chaque utilisateur u de 1 à N, nous fixons les facteurs produit (Q) et résolvons un problème d'optimisation pour trouver les facteurs utilisateur P[u] qui minimisent la fonction de coût. Par exemple, nous pouvons utiliser la méthode des moindres carrés pour minimiser la différence entre les évaluations réelles R[u] et les prédictions P[u] * Q^T.
+
+Mise à jour des facteurs produit (Q) :
+Pour chaque produit i de 1 à M, nous fixons les facteurs utilisateur (P) et résolvons un problème d'optimisation pour trouver les facteurs produit Q[i] qui minimisent la fonction de coût. Nous utilisons une méthode similaire aux moindres carrés pour minimiser la différence entre les évaluations réelles R[:, i] et les prédictions P * Q[i]^T.
+
+Répétez ces étapes jusqu'à ce que la convergence soit atteinte (par exemple, lorsque le nombre d'itérations prédéfini est atteint).
+
+Génération des recommandations :
+Une fois que les matrices P et Q ont été entraînées, nous pouvons générer des recommandations personnalisées pour les utilisateurs.
+
+Pour un utilisateur donné u, nous multiplions la ligne correspondante de la matrice P (P[u]) par la transposée de la matrice Q (Q^T) pour obtenir les scores de prédiction pour tous les produits.
+
+Nous classons ensuite les produits en fonction de leurs scores de prédiction et sélectionnons les meilleurs produits à recommander à l'utilisateur u.
+
+Voici un exemple chiffré pour mieux comprendre :
+
+Supposons que nous ayons une matrice d'évaluations des utilisateurs-produits R de taille 4x5, où chaque élément R[i, j] représente l'évaluation de l'utilisateur i pour le produit j.
+
+lua
+Copy code
+R = [[5, 3, 0, 1, 4],
+     [1, 0, 0, 5, 2],
+     [0, 4, 0, 4, 0],
+     [1, 1, 5, 0, 0]]
+Nous choisissons K = 2 (2 facteurs latents) pour la factorisation matricielle.
+
+Nous initialisons les matrices P et Q de manière aléatoire :
+css
+Copy code
+P = [[0.83, 0.26],
+     [0.37, 0.72],
+     [0.52, 0.08],
+     [0.17, 0.94]]
+
+Q = [[0.73, 0.68],
+     [0.17, 0.44],
+     [0.52, 0.91],
+     [0.82, 0.33],
+     [0.29, 0.58]]
+Nous entraînons l'algorithme ALS en alternant entre la mise à jour des facteurs utilisateur (P) et la mise à jour des facteurs produit (Q) jusqu'à convergence.
+
+Une fois que les matrices P et Q sont entraînées, nous pouvons générer des recommandations pour les utilisateurs.
+
+Par exemple, pour l'utilisateur 1 (u=0), nous multiplions P[0] par la transposée de Q pour obtenir les scores de prédiction :
+
+bash
+Copy code
+Scores de prédiction pour l'utilisateur 1 (u=0) : [3.85, 2.52, 4.11, 2.95, 2.57]
+Nous classons ensuite les produits en fonction de leurs scores de prédiction et sélectionnons les meilleurs produits à recommander à l'utilisateur 1.
+
+Cet exemple illustre les étapes de base de la factorisation matricielle ALS dans le filtrage collaboratif. Bien sûr, l'algorithme peut être affiné avec des paramètres supplémentaires, des méthodes d'optimisation et des techniques de régularisation pour améliorer les performances.
