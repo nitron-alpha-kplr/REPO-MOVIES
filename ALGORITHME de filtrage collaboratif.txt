@@ -260,3 +260,9 @@ Scores de prédiction pour l'utilisateur 1 (u=0) : [3.85, 2.52, 4.11, 2.95, 2.57
 Nous classons ensuite les produits en fonction de leurs scores de prédiction et sélectionnons les meilleurs produits à recommander à l'utilisateur 1.
 
 Cet exemple illustre les étapes de base de la factorisation matricielle ALS dans le filtrage collaboratif. Bien sûr, l'algorithme peut être affiné avec des paramètres supplémentaires, des méthodes d'optimisation et des techniques de régularisation pour améliorer les performances.
+
+méthodes pour calculer la similarité (goût commun entre les utilisateurs):
+cosine similarity (les angles)
+distance euclidienne
+corrélation
+...
