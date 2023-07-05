@@ -106,3 +106,20 @@ où H est la matrice utilisateur, W est la matrice d’éléments
 L’évaluation de l’élément donnée par l’utilisateur peut être exprimée comme un produit ponctuel du vecteur latent de l’utilisateur et du vecteur latent de l’élément.iu...)
 
 Conclusions : les implications de ces résultats .)
+
+CAPTAIN LOG : mercredi 05 07 2023 :
+
+Manipuler le collab als_movies_recommandation_engine_colab.ipynb , comprendre les fonctions et annoter le jupiler.
+Objectifs :
+Lire le  ws dans Colab
+Comprendre la préparation de la session Spark en dehors de l'environnement databricks
+Comprendre l'acquisition des fichiers et le dépôt dans hdfs/dbfs/fs
+Comprendre la structure des données utilisateurs+films+évaluations et leur préparation
+Utiliser les prérequis des cours "data analysis with spark" pour travailler  avec les  spark dataframes
+Utiliser les prérequis des cours "machine learning" pour comprendre la préparation d'un modèle "pyspark.ml"
+Paramétrer, entraîner et utiliser l'algorithme ALS (en insérant vos propres notations de films)
+Se préparer pour la partie ML-Ops en comprenant le  code derrière l'implémentation avec flask
+
+revoir les concetps :
+-Validation Croisée La validation croisée désigne le processus qui permet tester la précision prédictive d'un modèle dans un échantillon test (parfois aussi appelé échantillon de validation croisée) par rapport à la précision prédictive de l'échantillon d'apprentissage à partir duquel le modèle a été développé.
+-Valeurs d'évaluation de la recommandation Apache Spark ALS supérieures à la plage dans STACKOVERFLOW.
