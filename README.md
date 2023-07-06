@@ -123,3 +123,7 @@ Se préparer pour la partie ML-Ops en comprenant le  code derrière l'implément
 revoir les concetps :
 -Validation Croisée La validation croisée désigne le processus qui permet tester la précision prédictive d'un modèle dans un échantillon test (parfois aussi appelé échantillon de validation croisée) par rapport à la précision prédictive de l'échantillon d'apprentissage à partir duquel le modèle a été développé.
 -Valeurs d'évaluation de la recommandation Apache Spark ALS supérieures à la plage dans STACKOVERFLOW.
+
+CAPTAIN LOG jeudi 6 07 2023 :
+creation et deployement de l application de recommandation
+
